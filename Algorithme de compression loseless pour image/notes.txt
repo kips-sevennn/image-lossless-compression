@@ -1,0 +1,25 @@
+28 Octobre 2025: Optimisé l'algo de compression (plus précisement la fonction de reecriture). l'image_test_5 prenait 8h pour la première version maintenant elle prend 9 secondes!!!!!
+
+Théorie:
+__On va ajouter YOLO pour une compression bcp plus poussée. On va utiliser la segmentation d'instance pour detecter chaque objet de l'image, en faire un masque qu'on va reduire avec l'algo puis lier la position du premier pixel avec celle du fichier, au lieu de sauvegarder des pixels inutiles, on sauegarde juste les objets essentiels. Pas adpaté a mon cas!! 
+
+__On va utiliser le clustering, il s'agit ici de detecter le max de fermés topologique en termes de couleurs. Une zone est un fermé topologique lorsqu'en éliminant la couleur de l'ouvert, on puisse la reconstruire a partir de celle de la frontière. 
+
+    Etapes: 
+        Prendre un pixel aléatoire dans la liste déja crée (color_positions)
+        Vérifier tous ceux qui sont collés a lui dans un rayon qui augmente tant qu'on a pas de couleur intruse
+        Dès qu'on a une couleur intruse on fait un pas en arrière, on elimine l'intérieur de la zone topologique créée et on sauvegarde la frontière dans une liste 
+            Dans ce cas on aura un dictionaire du genre: {couleur:[listes de pixels de chaque frontière]}
+
+    Cas limites a considérer:
+        Si t'as une zone peu peuplée de pixels 
+        S'il y a trop de couleurs dans une zone restreinte: ça rejoint un peu le premier cas limite
+
+
+30 octobre 2025: Ce que je veux faire est proche de ce qu'on a fait avec M. Sahiry en MP!!! on modifie un peu le code et voila, le tour est joué
+
+
+04 Novembre: Sur proposition d'un gars du serveur NaN, je vais tester l'algo flood fill,
+chatgpt m'a proposé des détecteurs de frontières Sobel, Canny ou Gradient RGB. Il faut deux frontières, une interne et une externe, On va remplir les pixels qui sont entre ces frontières, C'est mieux que de faire des clusters aléatoires.
+Sobel et Canny ne sont pas mauvais mais je n'en aurai pas besoin pour l'instant, mais les algos: Region Growing/Watershed, SLIC, algorithme Felzenszwalb-Huttenlocher me plaisent bien
+

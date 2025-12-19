@@ -1,0 +1,233 @@
+Infos essentielles:
+RAM: 16Go
+Processeur: Intel Core i5 1135G7, overclocking activé
+Vitesse Moyenne(lors de la compression): ~3.6 Ghz
+
+Observations: Il semblerait que des dimensions trop petites ou trop grandes affectent la redondance d'information, pour un algo optimal, la "resolution parfaite" doit être trouvée. A partir des deux succèes on peut estimer le nombre de pixels a avoir dans et aux voisinage de l'intervalle [499212, 675798]. Egalement la presence de couleurs est inutile car n'empêche pas la reconnaissance des caractères
+
+Anciennes versions de fonctions
+def reecriture(positions: list)->str:
+    elements = list(set(positions)) #uniques elements
+    phrase_fractionnee = ["" for _ in range(len(positions))] #remplie psk le remplissage ne se fera pas de proche en proche: position 24 peut être occupée avant position 7
+    phrase_fractionnee[0]=str(positions[0])
+    for element in elements[1:]: #Le premier element est tjrs seul!!
+        index_de_debut_de_serie=[]
+        for i in range(len(positions)):
+            if positions[i] == element:
+                if i == 0 or positions[i-1] != element:
+                   index_de_debut_de_serie.append(i)
+        for i in index_de_debut_de_serie:
+            compteur = 1
+            j = i + 1
+            while j < len(positions) and positions[j] == element:
+                compteur += 1
+                j += 1
+            if compteur > 1:
+                phrase_fractionnee[i] = f"{element}*{compteur}" 
+            else: phrase_fractionnee[i]=f"{element}"
+    phrase_fractionnee = [nombre for i, nombre in enumerate(phrase_fractionnee) if nombre]
+    phrase = ''.join(phrase_fractionnee)
+    return phrase
+-----------------------------------------------------------------------------------------------------------------
+Resultats pour: image_test_1.jpg
+Dimensions:217x232
+Temps écoulé pour la compression: 00h:00m:02s
+Echec | Taille originale/Taille compressée:6049/26224
+Temps écoulé pour la decompression: 00h:00m:00s
+-----------------------------------------------------------------------------------------------------------------
+
+Resultats pour: image_test_2.png
+Dimensions:275x183
+Temps écoulé pour la compression: 00h:00m:06s
+Echec | Taille originale/Taille compressée:5228/9276
+Temps écoulé pour la decompression: 00h:00m:00s
+-----------------------------------------------------------------------------------------------------------------
+
+Resultats pour: image_test_3.jpg
+Dimensions:99x137
+Temps écoulé pour la compression: 00h:00m:00s
+Echec | Taille originale/Taille compressée:6184/6616
+Temps écoulé pour la decompression: 00h:00m:00s
+-----------------------------------------------------------------------------------------------------------------
+Resultats pour: image_test_4.jpg
+Dimensions:225x225
+Temps écoulé pour la compression: 00h:00m:04s
+Echec | Taille originale/Taille compressée:10917/35604
+Temps écoulé pour la decompression: 00h:00m:00s
+-----------------------------------------------------------------------------------------------------------------
+
+Resultats pour: image_test_5_reduit.png
+Dimensions:588x849
+Temps écoulé pour la compression: 00h:06m:29s
+Succès | Taille originale/Taille compressée:346965/217720
+Temps écoulé pour la decompression: 00h:00m:01s
+-----------------------------------------------------------------------------------------------------------------
+
+Resultats pour: image_test_6.png
+Dimensions:691x978
+Temps écoulé pour la compression: 00h:15m:13s
+Succès | Taille originale/Taille compressée:214216/127788
+Temps écoulé pour la decompression: 00h:00m:01s
+-----------------------------------------------------------------------------------------------------------------
+
+Resultats pour: image_test_7.png(présence de couleurs)
+Dimensions:768x1024
+Temps écoulé pour la compression: 00h:02m:31s
+Echec | Taille originale/Taille compressée:68308/615496
+Temps écoulé pour la decompression: 00h:00m:02s
+-----------------------------------------------------------------------------------------------------------------
+
+Resultats pour: image_test_8.png(presence de couleurs)
+Dimensions:768x1024
+Temps écoulé pour la compression: 00h:13m:30s
+Echec | Taille originale/Taille compressée:74204/440140
+Temps écoulé pour la decompression: 00h:00m:02s
+-----------------------------------------------------------------------------------------------------------------
+
+Resultats pour: image_test_9.jpg
+Dimensions:710x948
+Temps écoulé pour la compression: 00h:01m:22s
+Echec | Taille originale/Taille compressée:83948/445940
+Temps écoulé pour la decompression: 00h:00m:01s
+-----------------------------------------------------------------------------------------------------------------
+Resultats pour: image_test_5.jpg
+Dimensions:1779x2560
+Temps écoulé pour la compression: 08h:13m:26s
+Echec | Taille originale/Taille compressée:305367/1430980
+Temps écoulé pour la decompression: 00h:00m:11s
+-----------------------------------------------------------------------------------------------------------------
+Resultats pour: image_test_8_prime.png
+Dimensions:688x907
+Temps écoulé pour la compression: 00h:10m:04s
+Succès | Taille originale/Taille compressée:322403/198836
+Temps écoulé pour la decompression: 00h:00m:01s
+-----------------------------------------------------------------------------------------------------------------
+Resultats pour: image_test_7_prime.png
+Dimensions:581x779
+Temps écoulé pour la compression: 00h:06m:43s
+Succès | Taille originale/Taille compressée:191210/106720
+Temps écoulé pour la decompression: 00h:00m:01s
+-----------------------------------------------------------------------------------------------------------------
+Resultats pour: image_test_9_prime.png
+Dimensions:579x782
+Temps écoulé pour la compression: 00h:05m:23s
+Succès | Taille originale/Taille compressée:236863/129964
+Temps écoulé pour la decompression: 00h:00m:00s
+-----------------------------------------------------------------------------------------------------------------
+
+Resultats pour: final_image.png
+Dimensions:579x782
+Temps écoulé pour la compression: 00h:04m:44s
+Succès | Taille originale/Taille compressée:228502/129964
+Temps écoulé pour la decompression: 00h:00m:01s
+-----------------------------------------------------------------------------------------------------------------
+
+Resultats pour: final_image.png
+Dimensions:579x782
+Temps écoulé pour la compression: 00h:04m:50s
+Succès | Taille originale/Taille compressée:228502/129964
+Temps écoulé pour la decompression: 00h:00m:00s
+-----------------------------------------------------------------------------------------------------------------
+
+Resultats pour: image_test_8_reduit.png
+Dimensions:611x818
+Temps écoulé pour la compression: 00h:00m:10s
+Echec | Taille originale/Taille compressée:320172/329044
+Temps écoulé pour la decompression: 00h:00m:01s
+-----------------------------------------------------------------------------------------------------------------
+
+Resultats pour: image_test_8_reduit_2.png
+Dimensions:526x686
+Temps écoulé pour la compression: 00h:00m:04s
+Echec | Taille originale/Taille compressée:248656/253928
+Temps écoulé pour la decompression: 00h:00m:01s
+-----------------------------------------------------------------------------------------------------------------
+Algo de compression Optimisé
+-----------------------------------------------------------------------------------------------------------------
+Resultats pour: image_test_1.jpg
+Dimensions:217x232
+Temps écoulé pour la compression: 00h:00m:00s
+Echec | Taille originale/Taille compressée:6049/26224
+Temps écoulé pour la decompression: 00h:00m:00s
+-----------------------------------------------------------------------------------------------------------------
+
+Resultats pour: image_test_1.jpg
+Dimensions:217x232
+Temps écoulé pour la compression: 00h:00m:00s
+Echec | Taille originale/Taille compressée:6049/25960
+Temps écoulé pour la decompression: 00h:00m:00s
+-----------------------------------------------------------------------------------------------------------------
+
+Resultats pour: image_test_1.jpg
+Dimensions:217x232
+Temps écoulé pour la compression: 00h:00m:00s
+Echec | Taille originale/Taille compressée:6049/25960
+Temps écoulé pour la decompression: 00h:00m:00s
+-----------------------------------------------------------------------------------------------------------------
+Resultats pour: image_test_5.jpg
+Dimensions:1779x2560
+Temps écoulé pour la compression: 00h:00m:17s
+Echec | Taille originale/Taille compressée:305367/1426936
+-----------------------------------------------------------------------------------------------------------------
+Resultats pour: image_test_5.jpg
+Dimensions:1779x2560
+Temps écoulé pour la compression: 00h:00m:10s
+Echec | Taille originale/Taille compressée:305367/1430980
+-----------------------------------------------------------------------------------------------------------------
+Resultats pour: image_test_5.jpg
+Dimensions:1779x2560
+Temps écoulé pour la compression: 00h:00m:09s
+Echec | Taille originale/Taille compressée:305367/1430980
+Temps écoulé pour la decompression: 00h:00m:17s
+-----------------------------------------------------------------------------------------------------------------
+Resultats pour: images/image_test_1.jpg
+Dimensions:217x232
+Temps écoulé pour la compression: 00h:00m:00s
+Echec | Taille originale/Taille compressée:6049/26224
+Temps écoulé pour la decompression: 00h:00m:00s
+-----------------------------------------------------------------------------------------------------------------
+Resultats pour: images/image_test_10.jpg
+Dimensions:3000x2000
+Temps écoulé pour la compression: 00h:00m:10s
+Echec | Taille originale/Taille compressée:121752/329496
+Temps écoulé pour la decompression: 00h:00m:12s
+-----------------------------------------------------------------------------------------------------------------
+
+Resultats pour: images/image_test_10.jpg
+Dimensions:3000x2000
+Temps écoulé pour la compression: 00h:00m:53s
+Echec | Taille originale/Taille compressée:121752/329496
+Temps écoulé pour la decompression: 00h:00m:52s
+-----------------------------------------------------------------------------------------------------------------
+Temps écoulé pour la decompression: 00h:00m:51s
+-----------------------------------------------------------------------------------------------------------------
+
+Resultats pour: images/image_test_9.jpg
+Dimensions:710x948
+Temps écoulé pour la compression: 00h:00m:02s
+Echec | Taille originale/Taille compressée:83948/120436
+
+Resultats pour: images/image_test_3.jpg
+Dimensions:99x137
+Temps écoulé pour la compression: 00h:00m:00s
+Succès | Taille originale/Taille compressée:6184/1448
+
+Resultats pour: images/image_test_4.jpg
+Dimensions:225x225
+Temps écoulé pour la compression: 00h:00m:00s
+Succès | Taille originale/Taille compressée:10917/2752
+
+Resultats pour: images/image_test_5.jpg
+Dimensions:1779x2560
+Temps écoulé pour la compression: 00h:00m:16s
+Echec | Taille originale/Taille compressée:305367/341452
+
+Resultats pour: images/image_test_5.jpg
+Dimensions:1779x2560
+Temps écoulé pour la compression: 00h:00m:12s
+Echec | Taille originale/Taille compressée:305367/341452
+
+Resultats pour: images/image_test_7.png
+Dimensions:768x1024
+Temps écoulé pour la compression: 00h:00m:02s
+Echec | Taille originale/Taille compressée:68308/85404
