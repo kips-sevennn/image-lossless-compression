@@ -16,10 +16,13 @@ __On va utiliser le clustering, il s'agit ici de detecter le max de fermés topo
         S'il y a trop de couleurs dans une zone restreinte: ça rejoint un peu le premier cas limite
 
 
-30 octobre 2025: Ce que je veux faire est proche de ce qu'on a fait avec M. Sahiry en MP!!! on modifie un peu le code et voila, le tour est joué
+30 octobre 2025: Ce que je veux faire est proche de ce qu'on a fait avec un prof en classe!!! on modifie un peu le code et voila, le tour est joué
 
 
 04 Novembre: Sur proposition d'un gars du serveur NaN, je vais tester l'algo flood fill,
 chatgpt m'a proposé des détecteurs de frontières Sobel, Canny ou Gradient RGB. Il faut deux frontières, une interne et une externe, On va remplir les pixels qui sont entre ces frontières, C'est mieux que de faire des clusters aléatoires.
 Sobel et Canny ne sont pas mauvais mais je n'en aurai pas besoin pour l'instant, mais les algos: Region Growing/Watershed, SLIC, algorithme Felzenszwalb-Huttenlocher me plaisent bien
+
+Decembre: J'en ai marre!!!
+
 
